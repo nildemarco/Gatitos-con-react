@@ -4,6 +4,7 @@ import Card from './Card';
 
 const Div = styled.div`
 width: 100%;
+background-color: #6D2451;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;

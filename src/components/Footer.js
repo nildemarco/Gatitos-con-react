@@ -1,9 +1,30 @@
 import React from 'react';
 import { FaFacebookF, FaGooglePlusG, FaTwitter, FaInstagram, FaCopyright } from 'react-icons/fa'
+import styled from 'styled-components';
+
+const StyleFooter = styled.footer`
+width: 100%;
+height: 70px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: aquamarine ;
+color: #6D2451;
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .f-icon {
+        margin: 2px;
+        font-size: medium;
+        margin-bottom: 0px;
+    }
+}`
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <StyleFooter>
             <div className="footer-icons">
                 <FaFacebookF className="f-icon" size={13} />
                 <FaGooglePlusG className="f-icon"/>
@@ -12,7 +33,7 @@ const Footer = () => {
             </div>
             <div><FaCopyright className="f-icon"/> 2020 | All Rights Reserved</div>
 
-        </footer>
+        </StyleFooter>
     );
 }
 export default Footer;
