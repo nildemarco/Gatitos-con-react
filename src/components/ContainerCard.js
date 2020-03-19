@@ -1,10 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 import Card from './Card';
+
+const Div = styled.div`
+width: 100%;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+`;
 
 const ContainerCard = ({ gatos }) => {
 
     return (
-        <div className="contenedor">>
+        <Div>>
             {
                 gatos.map(gato =>
                     <Card
@@ -15,7 +24,7 @@ const ContainerCard = ({ gatos }) => {
                         isAvailable={gato.disponible} />
                 )
             }
-        </div>
+        </Div>
     );
 }
 export default ContainerCard;
