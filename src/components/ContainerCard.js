@@ -15,7 +15,7 @@ align-items: center;
 const ContainerCard = ({ gatos }) => {
 
     return (
-        <Div>>
+        <Div>
             {
                 gatos.map(gato =>
                     <Card

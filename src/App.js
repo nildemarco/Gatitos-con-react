@@ -41,7 +41,12 @@ const App = () => {
             return (acc)
         }, [])
         
-        setGatosFiltrados(gatosPorColor)
+        const gatosFinales = 
+        selection.color.length ?
+         [...gatosPorColor] : 
+         [...gatos]
+    
+        setGatosFiltrados(gatosFinales)
     }
 
     return (
