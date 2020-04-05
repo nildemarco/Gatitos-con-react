@@ -1,8 +1,24 @@
 import React from 'react';
+import styled from 'styled-components'
+
+const ContainerForm = styled.div`
+width: 100%;
+height:230px;
+display: flex;
+flex-direction: columns;
+justify-content: center;
+align-items: center;
+background-color:  #6D2451;
+color: #D1ABA7;
+div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+`
 
 const Formulario = ({handleSubmit, handleChange, selectionState}) => {
     return (
-        <div className="container-form">
+        <ContainerForm>
             <form onSubmit={handleSubmit}>
                 <h3>Formulario de adopcion</h3>
                 <div>
@@ -25,10 +41,10 @@ const Formulario = ({handleSubmit, handleChange, selectionState}) => {
                     <input type="number" onChange={(e) => handleChange(e)} name="edad" value={selectionState.edad}></input>
                 </div>
                 <div>
-                    <input type='submit' name='submit' value='enviar'></input>
+                    <input type='submit' name='submit' value='Enviar'></input>
                 </div>
             </form>
-        </div>
+        </ContainerForm>
     );
 }
 

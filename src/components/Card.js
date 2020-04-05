@@ -7,7 +7,7 @@ width: 320px;
 height: 180px;
 display: flex;
 margin: 2px 5px;
-background-color:${prop => prop.disponibilidad ? 'aquamarine' : 'grey'};
+background-color:${prop => prop.disponibilidad ? '#6D2451' : 'grey'};
 color: #D1ABA7;
 overflow: hidden;
 border-radius: 10px;

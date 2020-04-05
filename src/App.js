@@ -32,24 +32,24 @@ const App = () => {
         e.preventDefault()
         const gatosPorSexo = gatos.filter(gato => {
             return (
-            selection.sexo === "m" || selection.sexo === "f" ? 
-            gato.sexo === selection.sexo : 
-            gato)
+                selection.sexo === "m" || selection.sexo === "f" ?
+                    gato.sexo === selection.sexo :
+                    gato)
         })
 
         const gatosPorColor = gatosPorSexo.reduce((acc, curr) => {
             selection.color.forEach(color =>
-                curr.colores.includes(color) && (acc.indexOf(curr) === -1)?
+                curr.colores.includes(color) && (acc.indexOf(curr) === -1) ?
                     acc.push(curr) :
                     acc)
             return (acc)
         }, [])
-        
-        const gatosFinales = 
-        selection.color.length ?
-         [...gatosPorColor] : 
-         [...gatos]
-    
+
+        const gatosFinales =
+            selection.color.length ?
+                [...gatosPorColor] :
+                [...gatos]
+
         setGatosFiltrados(gatosFinales)
     }
 
@@ -57,7 +57,11 @@ const App = () => {
         <>
             <Nav />
             <Main />
-            <Formulario handleSubmit={handleSubmit} handleChange={handleChange} selectionState={selection}/>
+            <Formulario
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                selectionState={selection}
+            />
             <ContainerCard gatos={gatosFiltrados} />
             <Footer />
         </>

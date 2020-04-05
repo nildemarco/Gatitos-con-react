@@ -9,7 +9,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: aquamarine ;
+background-color:  #6D2451 ;
 color: #6D2451;
 div {
     display: flex;

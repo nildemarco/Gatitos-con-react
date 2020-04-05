@@ -5,7 +5,7 @@ import Card from './Card';
 const Div = styled.div`
 width: 100%;
 height: 500px;
-background-color: #6D2451;
+background-color: aquamarine;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
