@@ -1,86 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
+import gatos from './assets/gatos'
 import Nav from './components/Nav';
 import ContainerCard from './components/ContainerCard'
 import Footer from './components/Footer'
 import Main from './components/Main'
 import './App.css';
 
-const gatos = [
-  {
-      id: 1,
-      name: 'Rodolfo',
-      shortDesc:
-          'Tiene 4 años, le gusta perseguir mariposas, se lleva bien con niños y con otros gatos.',
-      longDesc:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit libero dolorum aliquam error expedita distinctio porro ducimus ex repellendus laboriosam. Sequi, doloribus autem? Unde commodi assumenda consequatur ratione numquam distinctio nihil blanditiis quae debitis sed eligendi modi architecto omnis aspernatur officia molestiae, vero nemo a quibusdam? Voluptatum eveniet blanditiis impedit.',
-      img:
-          'https://animalrevista.com/wp-content/uploads/2016/07/gatas-calico-tricolor-animal-la-revista.jpg',
-      colores: ['tricolor', 'negro', 'blanco', 'naranja', 'rayado'],
-      sexo: 'm',
-      disponible: false,
-  },
-  {
-      id: 2,
-      name: 'Muzzarella',
-      shortDesc:
-          'Muy dulce y mimosa. Tiene seis dedos en una pata que asegura le dan superpoderes.',
-      longDesc:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit libero dolorum aliquam error expedita distinctio porro ducimus ex repellendus laboriosam. Sequi, doloribus autem? Unde commodi assumenda consequatur ratione numquam distinctio nihil blanditiis quae debitis sed eligendi modi architecto omnis aspernatur officia molestiae, vero nemo a quibusdam? Voluptatum eveniet blanditiis impedit.',
-      img:
-          'https://www.imagenesdegatos.net/wp-content/uploads/2015/12/gato-gris-ojos-naranja-3.jpg',
-      colores: ['gris'],
-      sexo: 'f',
-      disponible: true,
-  },
-  {
-      id: 3,
-      name: 'Artilugia',
-      shortDesc:
-          'Muy activa y juguetona. Se lleva bien con perros. Ideal para casa con jardin amplio',
-      longDesc:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit libero dolorum aliquam error expedita distinctio porro ducimus ex repellendus laboriosam. Sequi, doloribus autem? Unde commodi assumenda consequatur ratione numquam distinctio nihil blanditiis quae debitis sed eligendi modi architecto omnis aspernatur officia molestiae, vero nemo a quibusdam? Voluptatum eveniet blanditiis impedit.',
-      img:
-          'https://image.freepik.com/foto-gratis/primer-plano-hermoso-gato-negro-blanco-marcas-sueno-cara-acostado-piso-concreto_44161-220.jpg',
-      colores: ['negro', 'blanco'],
-      sexo: 'f',
-      disponible: false,
-  },
-  {
-      id: 4,
-      name: 'Wosito',
-      shortDesc:
-          'Vivio toda su vida en la calle y todavia se asombra de cosas como estufas y escaleras.',
-      longDesc:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit libero dolorum aliquam error expedita distinctio porro ducimus ex repellendus laboriosam. Sequi, doloribus autem? Unde commodi assumenda consequatur ratione numquam distinctio nihil blanditiis quae debitis sed eligendi modi architecto omnis aspernatur officia molestiae, vero nemo a quibusdam? Voluptatum eveniet blanditiis impedit.',
-      img:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqkcBuVxZdrxWFYiEhoR3SpIioYCMesijUKHfjh7pTz-ctaf5&s',
-      colores: ['rayado'],
-      sexo: 'm',
-      disponible: true,
-  },
-  {
-      id: 5,
-      name: 'Calamardo',
-      shortDesc:
-          'Dicen que de noche, cuando nadie lo puede escuchar, invoca a Cthulu. Muy mimoso.',
-      longDesc:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit libero dolorum aliquam error expedita distinctio porro ducimus ex repellendus laboriosam. Sequi, doloribus autem? Unde commodi assumenda consequatur ratione numquam distinctio nihil blanditiis quae debitis sed eligendi modi architecto omnis aspernatur officia molestiae, vero nemo a quibusdam? Voluptatum eveniet blanditiis impedit.',
-      img:
-          'https://misanimales.com/wp-content/uploads/2018/07/mito-del-gato-negro.jpg',
-      colores: ['negro'],
-      sexo: 'm',
-      disponible: true,
-  },
-];
 
 const App = () => {
-  return (
-    <>
-      <Nav />
-      <Main/>
-      <ContainerCard gatos= {gatos}/>
-      <Footer/>
-    </>
-  );
+
+    const [gatosFiltrados, setGatosFiltrados] = useState([...gatos])
+    const [selection, setSelection] = useState({
+        color: [],
+        sexo: '',
+        nombre: '',
+        edad: '',
+        extras: [],
+    })
+
+    const handleChange = e => {
+        if (Array.isArray(selection[e.target.name])) {
+            setSelection({ ...selection, [e.target.name]: [...selection[e.target.name], e.target.value] })
+        }
+        else {
+            setSelection({ ...selection, [e.target.name]: e.target.value })
+        }
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        const gatosPorSexo = gatos.filter(gato => {
+            return (selection.sexo === "m" || selection.sexo === "f" ? gato.sexo === selection.sexo : gato)
+        })
+
+        const gatosPorColor = gatosPorSexo.reduce((acc, curr) => {
+            selection.color.forEach(color =>
+                curr.colores.includes(color) && (acc.indexOf(curr) === -1)?
+                    acc.push(curr) :
+                    acc)
+            return (acc)
+        }, [])
+        
+        setGatosFiltrados(gatosPorColor)
+    }
+
+    return (
+        <>
+            <Nav />
+            <Main />
+            <div className="container-form">
+                <form onSubmit={handleSubmit}>
+                    <h3>Formulario de adopcion</h3>
+                    <div>
+                        Negre <input onChange={handleChange} type="checkbox" value="negro" name="color" />
+        Blanque <input onChange={handleChange} type="checkbox" value="blanco" name="color" />
+        Naranja <input onChange={handleChange} type="checkbox" value="naranja" name="color" />
+        Tricolor <input onChange={handleChange} type="checkbox" value="tricolor" name="color" />
+        Rayade <input onChange={handleChange} type="checkbox" value="rayado" name="color" />
+        Gris <input onChange={handleChange} type="checkbox" value="gris" name="color" />
+                    </div>
+                    <div>
+                        Masculino <input onChange={handleChange} type="radio" value="m" name="sexo"></input>
+         Femenino <input onChange={handleChange} type="radio" value="f" name="sexo"></input>
+         Indiferente <input onChange={handleChange} type="radio" value="i" name="sexo"></input>
+                    </div>
+                    <div>Nombre
+          <input onChange={handleChange} value={selection.nombre} type="text" name="nombre" placeholder="nombre" />
+                    </div>
+                    <div>Edad
+          <input type="number" onChange={handleChange} name="edad" value={selection.edad}></input>
+                    </div>
+                    <div>
+                        <input type='submit' name='submit' value='enviar'></input>
+                    </div>
+                </form>
+            </div>
+            <ContainerCard gatos={gatosFiltrados} />
+            <Footer />
+        </>
+    );
 }
 export default App;
