@@ -20,14 +20,20 @@ const App = () => {
     })
 
     const handleChange = e => {
+        
         if (Array.isArray(selection[e.target.name])) {
+            if(e.target.checked){
             setSelection({ ...selection, [e.target.name]: [...selection[e.target.name], e.target.value] })
+            }
+            else {
+                setSelection({...selection, color: selection.color.filter(element => element !== e.target.value)})
+            }
         }
         else {
             setSelection({ ...selection, [e.target.name]: e.target.value })
         }
     }
-
+    
     const handleSubmit = e => {
         e.preventDefault()
         const gatosPorSexo = gatos.filter(gato => {

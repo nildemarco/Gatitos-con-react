@@ -14,19 +14,38 @@ div {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+input {
+    margin: 5px;
+    border-radius: 5px;
+    boder: none;
+}
+.container-button-submit {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-title-form {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 `
 
 const Formulario = ({handleSubmit, handleChange, selectionState}) => {
     return (
         <ContainerForm>
             <form onSubmit={handleSubmit}>
+                <div className="container-title-form">
                 <h3>Formulario de adopcion</h3>
+                </div>
                 <div>
-                    Negre <input onChange={(e) => handleChange(e)} type="checkbox" value="negro" name="color" />
-                    Blanque <input onChange={(e) => handleChange(e)} type="checkbox" value="blanco" name="color" />
+                    Negro <input onChange={(e) => handleChange(e)} type="checkbox" value="negro" name="color" />
+                    Blanco <input onChange={(e) => handleChange(e)} type="checkbox" value="blanco" name="color" />
                     Naranja <input onChange={(e) => handleChange(e)} type="checkbox" value="naranja" name="color" />
                     Tricolor <input onChange={(e) => handleChange(e)} type="checkbox" value="tricolor" name="color" />
-                    Rayade <input onChange={(e) => handleChange(e)} type="checkbox" value="rayado" name="color" />
+                    Rayado <input onChange={(e) => handleChange(e)} type="checkbox" value="rayado" name="color" />
                     Gris <input onChange={(e) => handleChange(e)} type="checkbox" value="gris" name="color" />
                 </div>
                 <div>
@@ -38,9 +57,9 @@ const Formulario = ({handleSubmit, handleChange, selectionState}) => {
                    <input onChange={(e) => handleChange(e)} value={selectionState.nombre} type="text" name="nombre" placeholder="nombre" />
                 </div>
                 <div>Edad
-                    <input type="number" onChange={(e) => handleChange(e)} name="edad" value={selectionState.edad}></input>
+                    <input  type="number" onChange={(e) => handleChange(e)} name="edad" value={selectionState.edad}></input>
                 </div>
-                <div>
+                <div className='container-button-submit'>
                     <input type='submit' name='submit' value='Enviar'></input>
                 </div>
             </form>

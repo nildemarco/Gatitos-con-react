@@ -23,7 +23,7 @@ div {
   justify-content: space-evenly;
   margin-left: 8px;
   button{
-    width: 50%;
+    width: 55%;
     background-color: #6D2451;
     color: #D1ABA7;
     box-shadow: 0 0 10px;
