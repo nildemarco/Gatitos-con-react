@@ -17,7 +17,7 @@ div {
 input {
     margin: 5px;
     border-radius: 5px;
-    boder: none;
+    border: none;
 }
 .container-button-submit {
     width: 80%;
