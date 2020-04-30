@@ -10,7 +10,7 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color:  #6D2451 ;
-color: #6D2451;
+color:  #ffff;
 div {
     display: flex;
     justify-content: center;

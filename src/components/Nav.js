@@ -8,7 +8,7 @@ height: 70px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-background-color: #6D2451;
+background-color: blue;
 color: #ffff;
 h1 {
     margin-left: 15px;
